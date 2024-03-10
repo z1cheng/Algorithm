@@ -3,7 +3,7 @@ package algorithm;
 public class Number {
 
     //阶乘
-    private int factorial(int n) {
+    public static int factorial(int n) {
         int res = 1;
         for (int i = 1; i <= n; i++) {
             res *= i;
@@ -12,7 +12,7 @@ public class Number {
     }
 
     //带取模的阶乘
-    private int factorial_mod(int n, int mod) {
+    public static int factorial_mod(int n, int mod) {
         int res = 1;
         for (int i = 1; i <= n; i++) {
             res *= i;
