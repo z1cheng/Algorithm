@@ -6,15 +6,12 @@ package algorithm;
  */
 public class SegmentTree {
 
-    private int n, m;
     //维护最小值
-    private int[] min;
+    private final int[] min;
     //维护总和
-    private long[] sum;
+    private final long[] sum;
 
-    public SegmentTree(int n, int m) {
-        this.n = n;
-        this.m = m;
+    public SegmentTree(int n) {
         min = new int[n * 4];
         sum = new long[n * 4];
     }
