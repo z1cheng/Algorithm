@@ -15,17 +15,17 @@ public class ReservoirSampling {
     }
 
     public void add(int num) {
-        n++;
-        if (n <= reservoir.length) {
-            reservoir[n - 1] = num;
+        if (n < reservoir.length) {
+            reservoir[n] = num;
         } else {
             // j 范围是 [0, n - 1]
             // 当前添加的概率 k / n
-            int j = rand.nextInt(n);
+            int j = rand.nextInt(n + 1);
             if (j < reservoir.length) {
                 reservoir[j] = num;
             }
         }
+        n++;
     }
 
     public int[] getReservoir() {
