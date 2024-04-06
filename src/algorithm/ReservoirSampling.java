@@ -2,30 +2,33 @@ package algorithm;
 
 import java.util.Random;
 
+/**
+ * 蓄水池采样算法，用于从未知大小的数据流中随机选取 k 个元素
+ */
 public class ReservoirSampling {
 
-    private int[] reservoir;
-    private int n;
-    private Random rand;
+    private final int[] reservoir;
+    private int curIdx;
+    private final Random rand;
 
     public ReservoirSampling(int k) {
         this.reservoir = new int[k];
-        this.n = 0;
+        this.curIdx = 0;
         this.rand = new Random();
     }
 
     public void add(int num) {
-        if (n < reservoir.length) {
-            reservoir[n] = num;
+        if (curIdx < reservoir.length) {
+            reservoir[curIdx] = num;
         } else {
-            // j 范围是 [0, n - 1]
-            // 当前添加的概率 k / n
-            int j = rand.nextInt(n + 1);
+            // j 范围是 [0, curIdx]
+            // 当前添加的概率 k / (curIdx+1)
+            int j = rand.nextInt(curIdx + 1);
             if (j < reservoir.length) {
                 reservoir[j] = num;
             }
         }
-        n++;
+        curIdx++;
     }
 
     public int[] getReservoir() {
