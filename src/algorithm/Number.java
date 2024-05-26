@@ -1,5 +1,7 @@
 package algorithm;
 
+import java.util.*;
+
 public class Number {
 
     //阶乘
@@ -21,6 +23,45 @@ public class Number {
         return res % mod;
     }
 
+    /**
+     * 求 n 的因子个数
+     *
+     * @param n 正整数
+     * @return n 的因子个数
+     */
+    public static int countFactors(int n) {
+        int res = 0;
+        for (int i = 1; i * i <= n; i++) {
+            if (n % i == 0) {
+                res++;
+                if (i * i != n) {
+                    res++;
+                }
+            }
+        }
+        return res;
+    }
+
+    /**
+     * 质因数分解，将 n 分解成若干个质数的乘积
+     *
+     * @param n 正整数
+     * @return n 的质因数列表
+     */
+    public static List<Integer> primeFactorization(int n) {
+        var res = new ArrayList<Integer>();
+        for (int i = 2; i * i <= n; i++) {
+            while (n % i == 0) {
+                n /= i;
+                res.add(i);
+            }
+        }
+        if (n != 1) {
+            res.add(n);
+        }
+        return res;
+    }
+
     // 求不同的质因数个数
     // 预处理(10 ^ 5 +1)
     // 时间复杂度 o(n * log log n)
@@ -37,11 +78,12 @@ public class Number {
     }
 
     // 质数数组，false 是质数，true 合数
-    public static boolean[] isNotPrime() {
+    public static boolean[] notPrime() {
         boolean[] res = new boolean[100001];
         for (int i = 2; i * i <= res.length; i++) {
             if (!res[i]) {// 如果是质数
-                // i+i=2i包括3i,4i,...(i-1)i都在之前被更小的素数筛过了，所以i*i
+                // i+i=2i包括3i,4i,...(i-1)i都在之前被更小的素数筛过了
+                // 所以从i*i继续筛 (i+1)i,(i+2)i...
                 for (int j = i * i; j <= res.length; j += i) {
                     res[j] = true; // 把合数置为 true
                 }
