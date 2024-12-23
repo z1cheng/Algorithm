@@ -4,7 +4,12 @@ import java.util.*;
 
 public class Number {
 
-    //阶乘
+    /**
+     * 求 n 的阶乘
+     *
+     * @param n
+     * @return
+     */
     public static int factorial(int n) {
         int res = 1;
         for (int i = 1; i <= n; i++) {
@@ -13,7 +18,13 @@ public class Number {
         return res;
     }
 
-    //带取模的阶乘
+    /**
+     * 求 n 的阶乘，取模 mod
+     *
+     * @param n
+     * @param mod
+     * @return
+     */
     public static int factorial_mod(int n, int mod) {
         int res = 1;
         for (int i = 1; i <= n; i++) {
@@ -62,9 +73,13 @@ public class Number {
         return res;
     }
 
-    // 求不同的质因数个数
-    // 预处理(10 ^ 5 +1)
-    // 时间复杂度 o(n * log log n)
+    /**
+     * 求不同的质因数个数
+     * 预处理(10 ^ 5 +1)
+     * 时间复杂度 o(n * log log n)
+     *
+     * @return
+     */
     public static int[] omega() {
         var res = new int[100001];
         for (int i = 2; i < res.length; i++) {
@@ -77,7 +92,11 @@ public class Number {
         return res;
     }
 
-    // 质数数组，false 是质数，true 合数
+    /**
+     * 质数数组，false 是质数，true 合数
+     *
+     * @return
+     */
     public static boolean[] notPrime() {
         boolean[] res = new boolean[100001];
         for (int i = 2; i * i <= res.length; i++) {
@@ -92,7 +111,13 @@ public class Number {
         return res;
     }
 
-    // 最大公约数
+    /**
+     * 最大公约数
+     *
+     * @param a
+     * @param b
+     * @return
+     */
     public static int gcd(int a, int b) {
         while (b != 0) {
             int r = a % b;
@@ -100,5 +125,29 @@ public class Number {
             b = r;
         }
         return a;
+    }
+
+    /**
+     * 求排列数 A(n, m) = n! / (n - m)!
+     * A(3, 2) = 3! / (3 - 2)! = 6 / 1 = 6
+     *
+     * @param a
+     * @param b
+     * @return
+     */
+    public static int permutation(int a, int b) {
+        return factorial(a) / factorial(a - b);
+    }
+
+    /**
+     * 求组合数 C(n, m) = n! / (m! * (n - m)!)
+     * C(3, 2) = 3! / (2! * (3 - 2)!) = 6 / 2 = 3
+     *
+     * @param a
+     * @param b
+     * @return
+     */
+    public static int combination(int a, int b) {
+        return factorial(a) / (factorial(b) * factorial(a - b));
     }
 }
