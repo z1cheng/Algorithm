@@ -142,7 +142,8 @@ public class Number {
     /**
      * 求组合数 C(n, m) = n! / (m! * (n - m)!)
      * C(3, 2) = 3! / (2! * (3 - 2)!) = 6 / 2 = 3
-     *
+     * Python: comb(3, 2)
+     * 
      * @param a
      * @param b
      * @return
